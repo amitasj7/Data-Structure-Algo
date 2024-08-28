@@ -1,7 +1,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-// Recursion
+// 1. Recursion
 class Solution
 {
 public:
@@ -27,17 +27,12 @@ public:
     }
 };
 
-// Memorization
+// 2. Memorization
 class Solution
 {
 public:
     int robHelper(vector<int> &nums, vector<int> &dp, int index)
     {
-        // 2. return directly, not call Recursion
-        if (dp[index] != -1)
-        {
-            return dp[index];
-        }
 
         // 1. base case
         if (index == 0)
@@ -49,6 +44,12 @@ public:
 
         // if (index < 0)
         //     return 0;
+
+        // 2. return directly, not call Recursion
+        if (dp[index] != -1)
+        {
+            return dp[index];
+        }
 
         int pickHome = nums[index] + robHelper(nums, dp, index - 2);
         int notPickHome = robHelper(nums, dp, index - 1);
@@ -67,14 +68,14 @@ public:
     }
 };
 
-// tabulation
+// 3. tabulation
 class Solution
 {
 public:
-    int robHelper(vector<int> &nums, vector<int> &dp)
+    int rob(vector<int> &nums)
     {
-        int size = dp.size();
-
+        int size = nums.size();
+        vector<int> dp(size, -1);
         // 1. Base case
         dp[0] = nums[0];
         if (size >= 2)
@@ -91,24 +92,17 @@ public:
         // 3. return last index value
         return dp[size - 1];
     }
-
-    int rob(vector<int> &nums)
-    {
-        int size = nums.size();
-
-        vector<int> dp(size, -1);
-
-        return robHelper(nums, dp);
-    }
 };
 
 // memory sort Technique
 class Solution
 {
 public:
-    int robHelper(vector<int> &nums)
+ 
+
+    int rob(vector<int> &nums)
     {
-        int size = nums.size();
+         int size = nums.size();
 
         if (size == 1)
             return nums[0];
@@ -131,16 +125,11 @@ public:
         }
         // 3. return last index value
         return pre1;
-    }
 
-    int rob(vector<int> &nums)
-    {
-
-        return robHelper(nums);
     }
 };
 
-// memory sort Technique
+// memory sort Technique for circular homes
 class Solution
 {
 public:

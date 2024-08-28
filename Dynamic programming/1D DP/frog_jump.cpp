@@ -26,7 +26,7 @@ int frogJump(int n, vector<int> &heights)
 
 int minimizeCost(int n, int k, vector<int> &height)
 {
-    // Write your code here.
+    
 
     vector<int> cost(n, -1);
 
@@ -49,6 +49,7 @@ int minimizeCost(int n, int k, vector<int> &height)
 
         cost[i] = minCost;
     }
+  
 
     return cost[n - 1];
 }
